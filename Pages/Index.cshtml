@@ -4,22 +4,25 @@
     ViewData["Title"] = "Погода в городе";
 }
 
-<div class="weather-container">
+<div class="weather_container">
 
     <h2>Узнать погоду</h2>
 
     <form method="post"> 
-        <input asp-for="City" placeholder="Введите название города" value="" />
+        <input asp-for="City" placeholder="Введите название города" />
         <br />
         <button type="submit">Узнать погоду</button>
     </form>
 
     @if (Model.Weather != null)
     {
-        <div class="weather-result">
+        <div class="weather_result">
             <h3>Погода в городе @Model.Weather.City</h3>
             <p>Температера: @Model.Weather.Temperature °C</p>
             <p>Облачность: @Model.Weather.Description</p>
         </div>
-    } 
-</d>
+    } else if(Model.WasSubmitted)
+    {
+        <div class="error_message">Город "@Model.City" не найдет. Попробуйте ещё раз.</div>
+    }
+</div>
